@@ -4,7 +4,10 @@ import { StyleSheet } from 'react-native'
 import { ListItem, Body, Left, Text, Thumbnail } from 'native-base';
 
 const Row = props => (
-  <ListItem thumbnail style={styles.listItem} >
+  <ListItem 
+    thumbnail style={styles.listItem} 
+    onPress={()=> {props.onSelectStudent(props)}}
+  >
     <Left>
       <Thumbnail square 
       style={{width: 35, height: 35 }}
@@ -28,6 +31,7 @@ const styles = StyleSheet.create({
 })
 
 Row.propTypes = {
+  id: PropTypes.number,
   name: PropTypes.string,
   institution: PropTypes.string,
   mobile_number: PropTypes.string

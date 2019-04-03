@@ -35,6 +35,10 @@ class StudentListScreen extends React.Component {
     this.props.navigation.navigate('AddStudent') 
   }
 
+  handleOnSelectStudent = student => {
+    this.props.navigation.navigate('StudentDetails', {student})
+  }
+
   render() {
     return (
       <Container>
@@ -43,6 +47,7 @@ class StudentListScreen extends React.Component {
           (
               <FlatListStudents 
                 students = {this.state.students} 
+                onSelectStudent={this.handleOnSelectStudent}
               />
           )}
           <Fab

@@ -14,11 +14,12 @@ import {PersistGate} from 'redux-persist/integration/react'
 import StudentListScreen from './screens/StudentListScreen'
 import SignUpScreen from './screens/SignUpScreen'
 import LoginScreen from './screens/LoginScreen'
+import AddStudentScreen from './screens/AddStudentScreen'
+import StudentDetailsScreen from './screens/StudentDetailsScreen'
 import {store, persistor} from './redux/store'
 import {Font} from 'expo'
-import {LOG_OUT_REQUEST } from './redux/actions';
-import AddStudentScreen from './screens/AddStudentScreen';
-import { colors, commonStyles } from './styles/base';
+import {LOG_OUT_REQUEST } from './redux/actions'
+import { colors, commonStyles } from './styles/base'
 
 const StudentStackNavigator = createStackNavigator({
   StudentList: { 
@@ -29,6 +30,9 @@ const StudentStackNavigator = createStackNavigator({
     navigationOptions: {
       title: 'New Student',
     }
+  },
+  StudentDetails: {
+    screen: StudentDetailsScreen
   }
 },
 {

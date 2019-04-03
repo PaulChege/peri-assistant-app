@@ -1,15 +1,13 @@
 import React from 'react'
-import { FlatList, StyleSheet } from 'react-native'
+import {FlatList} from 'react-native'
 import PropTypes from 'prop-types'
 
 import Row from './Row'
 
-const renderItem = ({item}) => <Row {...item} />
-
 const FlatListStudents = props => 
   <FlatList 
     keyExtractor={(item) => item.id.toString()}
-    renderItem={renderItem} 
+    renderItem={({item}) => <Row {...item} onSelectStudent={props.onSelectStudent} />}
     data={props.students} 
   />
 
