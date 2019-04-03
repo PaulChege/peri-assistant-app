@@ -2,12 +2,26 @@ import React from 'react'
 import {View, StyleSheet} from 'react-native'
 import FlatListStudents from '../FlatListStudents'
 import {fetchStudents} from '../api'
-import { connect } from 'react-redux';
-import { Fab, Icon, Container } from 'native-base';
-import { colors } from '../styles/base';
+import { connect } from 'react-redux'
+import { Fab, Icon, Container, Button } from 'native-base'
+import { colors, commonStyles } from '../styles/base'
 import {NavigationEvents} from 'react-navigation'
 
 class StudentListScreen extends React.Component {
+
+  static navigationOptions = ({navigation}) => {
+    return {
+      title: 'My Students',
+      headerLeft: (
+      <Button iconLeft transparent
+        onPress={()=> {navigation.openDrawer()}}
+      >
+        <Icon type="Feather" name="menu" style={commonStyles.drawerIcon} />
+      </Button>
+      )
+    }
+  }
+
   state = {
     students: []
   }

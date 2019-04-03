@@ -48,4 +48,10 @@ export const commonStyles = StyleSheet.create({
     width: '100%',
     textAlign: 'center',
   },
+  drawerIcon:{
+    fontSize: 30, 
+    color: colors.white,
+    paddingTop: 15,
+    paddingLeft: 5
+  }
 })

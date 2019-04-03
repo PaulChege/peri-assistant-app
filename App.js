@@ -7,7 +7,8 @@ import {
   DrawerItems,
   SafeAreaView,  
 } from 'react-navigation'
-import {Button, View, ScrollView} from 'react-native'
+import {View, Text, StyleSheet} from 'react-native'
+import {Button} from 'native-base'
 import {Provider} from 'react-redux'
 import {PersistGate} from 'redux-persist/integration/react'
 import StudentListScreen from './screens/StudentListScreen'
@@ -17,14 +18,11 @@ import {store, persistor} from './redux/store'
 import {Font} from 'expo'
 import {LOG_OUT_REQUEST } from './redux/actions';
 import AddStudentScreen from './screens/AddStudentScreen';
-import { colors } from './styles/base';
+import { colors, commonStyles } from './styles/base';
 
 const StudentStackNavigator = createStackNavigator({
   StudentList: { 
     screen: StudentListScreen,
-    navigationOptions: {
-      title: 'My Students',
-    }
   },
   AddStudent: {
     screen: AddStudentScreen,
@@ -56,8 +54,16 @@ const MainDrawer = createDrawerNavigator({
   contentComponent: (props) => (
     <View style={{flex:1}}>
       <SafeAreaView forceInset={{ top: 'always', horizontal: 'never' }}>
-          <DrawerItems {...props} />
-          <Button title="Logout" onPress={() => {this._handleLogout(props)}}/>
+          <DrawerItems {...props}
+            labelStyle={styles.drawerLabels}
+            activeBackgroundColor='rgba(0, 0, 0, .15)'
+            inactiveBackgroundColor='transparent'
+          />
+          <Button transparent light onPress={() => {this._handleLogout(props)}} >
+            <Text style={styles.logoutButtonText}>
+              Logout
+            </Text>
+          </Button>
       </SafeAreaView>
     </View>
   )
@@ -100,3 +106,21 @@ export default class App extends React.Component {
     )
   }
 }
+
+const styles = StyleSheet.create({
+  logoutButtonText: {
+    color: colors.primary,
+    fontSize: 15,
+    fontFamily: 'quicksand-regular',
+    width: '100%',
+    textAlign: 'left',
+    paddingLeft: 15
+  },
+  drawerLabels:{
+    color: colors.primary,
+    fontSize: 15,
+    fontFamily: 'quicksand-regular',
+    fontWeight: 'normal'
+  }
+})
+

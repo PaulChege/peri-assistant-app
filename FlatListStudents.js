@@ -8,7 +8,6 @@ const renderItem = ({item}) => <Row {...item} />
 
 const FlatListStudents = props => 
   <FlatList 
-    style={styles.list}
     keyExtractor={(item) => item.id.toString()}
     renderItem={renderItem} 
     data={props.students} 
@@ -17,12 +16,5 @@ const FlatListStudents = props =>
 FlatListStudents.propTypes = {
   students: PropTypes.array
 }
-
-
-const styles = StyleSheet.create({
-  list: {
-    marginTop: 30
-  }
-})
 
 export default FlatListStudents
