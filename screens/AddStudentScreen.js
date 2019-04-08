@@ -8,7 +8,7 @@ class AddStudentScreen extends React.Component {
 
   static propTypes = {
     err: PropTypes.string,
-    newStudent: PropTypes.object,
+    students: PropTypes.array,
     token: PropTypes.string,
     addNewStudent: PropTypes.func
   }
@@ -36,7 +36,7 @@ class AddStudentScreen extends React.Component {
 const mapStateToProps = state => ({
   err: state.error.addStudentError,
   token: state.user.token,
-  newStudent: state.student.newStudent
+  students: state.student.students
 })
 
-export default connect(mapStateToProps, { addNewStudent: addNewStudent } )(AddStudentScreen)
+export default connect(mapStateToProps, {addNewStudent} )(AddStudentScreen)

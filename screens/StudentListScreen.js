@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import { Fab, Icon, Container, Button } from 'native-base'
 import { colors, commonStyles } from '../styles/base'
 import {NavigationEvents} from 'react-navigation'
+import {fetchStudentsDetails} from '../redux/actions'
 
 class StudentListScreen extends React.Component {
 
@@ -22,13 +23,12 @@ class StudentListScreen extends React.Component {
     }
   }
 
-  state = {
-    students: []
+  componentDidMount(){
+    this._getStudents()
   }
 
   _getStudents = async() =>{
-    const students = await fetchStudents(this.props.token)
-    this.setState({students: students})
+    await this.props.fetchStudentsDetails(this.props.token)
   }
 
   _navigateToAddStudentScreen = () => {
@@ -43,10 +43,10 @@ class StudentListScreen extends React.Component {
     return (
       <Container>
         <View style={styles.container}>
-          { this.state.students && 
+          { this.props.students && 
           (
               <FlatListStudents 
-                students = {this.state.students} 
+                students = {this.props.students} 
                 onSelectStudent={this.handleOnSelectStudent}
               />
           )}
@@ -58,7 +58,7 @@ class StudentListScreen extends React.Component {
             <Icon name="md-add" />
           </Fab>
         </View>
-        <NavigationEvents onDidFocus={() => this._getStudents()} />
+        {/* <NavigationEvents onDidFocus={() => this._getStudents()} /> */}
       </Container>
     )
   }
@@ -73,10 +73,9 @@ const styles = StyleSheet.create({
   }
 })
 
-
-
 const mapStateToProps = state => ({
-  token: state.user.token
+  token: state.user.token,
+  students: state.student.students
 })
 
-export default connect(mapStateToProps)(StudentListScreen)
+export default connect(mapStateToProps, {fetchStudentsDetails})(StudentListScreen)

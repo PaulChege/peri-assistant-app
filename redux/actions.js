@@ -1,4 +1,4 @@
-import {logIn, signUp, addStudent} from '../api'
+import {logIn, signUp, addStudent, fetchStudents} from '../api'
 
 // action types
 export const LOG_IN_FULFILLED = 'LOG_IN_FULFILLED'
@@ -6,8 +6,10 @@ export const LOG_IN_REJECTED = 'LOG_IN_REJECTED'
 export const LOG_OUT_REQUEST = 'LOG_OUT_REQUEST'
 export const SIGN_UP_FULFILLED = 'SIGN_UP_SUCCESSFUL'
 export const SIGN_UP_REJECTED = 'SIGN_UP_REJECTED'
+export const FETCH_STUDENTS_FULFILLED = 'FETCH_STUDENTS_FULFILLED'
 export const ADD_STUDENT_FULFILLED = 'ADD_STUDENT_FULFILLED'
 export const ADD_STUDENT_REJECTED = 'ADD_STUDENT_REJECTED'
+
 
 // async action creator
 export const logInUser = (email, password) => async dispatch => {
@@ -26,6 +28,16 @@ export const signUpUser = (name, email, password, password_confirmation) => asyn
   }
   catch (err) {
     dispatch({type: SIGN_UP_REJECTED, payload: err.message})
+  }
+}
+
+export const fetchStudentsDetails = (token) => async dispatch => {
+  try{
+    const response = await fetchStudents(token)
+    dispatch({type: FETCH_STUDENTS_FULFILLED, payload: response})
+  }
+  catch(err){
+    
   }
 }
 

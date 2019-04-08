@@ -67,3 +67,19 @@ export const addStudent = async(token, name, institution, mobile_number) => {
   const errMessage = await response.json()
   throw new Error(errMessage.message)
 }
+
+
+export const fetchStudent = async(token, studentId) =>{
+  const response = await fetch(host + 'students/' + studentId,
+  {
+    method: 'GET',
+    headers: {
+      'Authorization': token
+    }
+  })
+
+  if(response.ok) {
+    const student = await response.json()
+    return student
+  }
+}

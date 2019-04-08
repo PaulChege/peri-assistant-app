@@ -1,10 +1,9 @@
 import {combineReducers} from 'redux'
 
 import {LOG_IN_FULFILLED, LOG_IN_REJECTED, 
-  SIGN_UP_FULFILLED, SIGN_UP_REJECTED, LOG_OUT_REQUEST, ADD_STUDENT_REJECTED, ADD_STUDENT_FULFILLED } from './actions'
+  SIGN_UP_FULFILLED, SIGN_UP_REJECTED, LOG_OUT_REQUEST, ADD_STUDENT_REJECTED, ADD_STUDENT_FULFILLED, FETCH_STUDENTS_FULFILLED } from './actions'
 
 const merge = (prev, next) => Object.assign({}, prev, next)
-
 
 const userReducer = (state = {}, action) => {
   switch (action.type) {
@@ -22,17 +21,18 @@ const userReducer = (state = {}, action) => {
   }
 }
 
-
 const studentReducer = (state ={}, action) => {
   switch( action.type) {
+    case FETCH_STUDENTS_FULFILLED:
+      return merge(state, {students: action.payload})
     case ADD_STUDENT_FULFILLED:
-      return merge(state, {newStudent: action.payload})
+      return merge(state, {students: [...state.students, action.payload]})
     default:
       return state
   }
 }
 
-// Separate reducer to prevent persisting of errors in state
+// Separate error reducer to prevent persisting of errors in state
 const errorReducer = (state = {}, action) => {
   switch (action.type) {
     case LOG_IN_REJECTED:

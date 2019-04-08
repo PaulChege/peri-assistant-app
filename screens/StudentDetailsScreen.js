@@ -12,16 +12,19 @@ export default class StudentDetailsScreen extends React.Component {
 
   _getStudentDetails = () =>{
     this.setState({student: this.props.navigation.getParam('student',{})})
-    // ToDo 
-    // - Get Student details from API and not from state
   }
-
 
   render() {
     return (
       <View>
         <Text>
           {this.state.student.name}
+        </Text>
+        <Text>
+          {this.state.student.institution}
+        </Text>
+        <Text>
+          {this.state.student.mobile_number}
         </Text>
       </View>
     )
