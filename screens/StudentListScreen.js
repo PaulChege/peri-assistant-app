@@ -1,11 +1,9 @@
 import React from 'react'
 import {View, StyleSheet} from 'react-native'
 import FlatListStudents from '../FlatListStudents'
-import {fetchStudents} from '../api'
 import { connect } from 'react-redux'
 import { Fab, Icon, Container, Button } from 'native-base'
 import { colors, commonStyles } from '../styles/base'
-import {NavigationEvents} from 'react-navigation'
 import {fetchStudentsDetails} from '../redux/actions'
 
 class StudentListScreen extends React.Component {
@@ -28,7 +26,7 @@ class StudentListScreen extends React.Component {
   }
 
   _getStudents = async() =>{
-    await this.props.fetchStudentsDetails(this.props.token)
+    await this.props.fetchStudentsDetails()
   }
 
   _navigateToAddStudentScreen = () => {
@@ -74,7 +72,6 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = state => ({
-  token: state.user.token,
   students: state.student.students
 })
 

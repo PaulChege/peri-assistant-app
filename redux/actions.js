@@ -1,5 +1,5 @@
-import {logIn, signUp, addStudent, fetchStudents} from '../api'
-
+import {logIn, signUp, addStudent, fetchStudents, removeStudent} from '../api'
+import {store} from './store'
 // action types
 export const LOG_IN_FULFILLED = 'LOG_IN_FULFILLED'
 export const LOG_IN_REJECTED = 'LOG_IN_REJECTED'
@@ -9,6 +9,7 @@ export const SIGN_UP_REJECTED = 'SIGN_UP_REJECTED'
 export const FETCH_STUDENTS_FULFILLED = 'FETCH_STUDENTS_FULFILLED'
 export const ADD_STUDENT_FULFILLED = 'ADD_STUDENT_FULFILLED'
 export const ADD_STUDENT_REJECTED = 'ADD_STUDENT_REJECTED'
+export const REMOVE_STUDENT_FULFILLED = 'REMOVE_STUDENT_FULFILLED'
 
 
 // async action creator
@@ -31,7 +32,8 @@ export const signUpUser = (name, email, password, password_confirmation) => asyn
   }
 }
 
-export const fetchStudentsDetails = (token) => async dispatch => {
+export const fetchStudentsDetails = () => async dispatch => {
+  const token = store.getState().user.token
   try{
     const response = await fetchStudents(token)
     dispatch({type: FETCH_STUDENTS_FULFILLED, payload: response})
@@ -41,12 +43,25 @@ export const fetchStudentsDetails = (token) => async dispatch => {
   }
 }
 
-export const addNewStudent = (token, name, institution, mobile_number) => async dispatch => {
+export const addNewStudent = (name, institution, mobile_number) => async dispatch => {
+  const token = store.getState().user.token
   try{
     const response = await addStudent(token, name, institution, mobile_number)
     dispatch({type: ADD_STUDENT_FULFILLED, payload: response})
   }
   catch (err){
     dispatch({type: ADD_STUDENT_REJECTED, payload: err.message})
+  }
+}
+
+
+export const removeStudentRecord = (studentId) => async dispatch => {
+  const token = store.getState().user.token
+  try{
+    const response = await removeStudent(token, studentId)
+    dispatch({type: REMOVE_STUDENT_FULFILLED, payload: response})
+  }
+  catch(err){
+
   }
 }

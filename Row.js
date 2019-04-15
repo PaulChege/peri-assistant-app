@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { StyleSheet } from 'react-native'
-import { ListItem, Body, Left, Text, Thumbnail } from 'native-base';
+import { ListItem, Body, Left, Text, Thumbnail } from 'native-base'
+import {commonStyles} from './styles/base'
 
 const Row = props => (
   <ListItem 
@@ -14,8 +15,8 @@ const Row = props => (
       source= {require('./assets/avatar.png')} />
     </Left>
     <Body>
-      <Text style={styles.text}>{props.name}</Text>
-      <Text style={styles.text}>{props.institution}</Text>
+      <Text style={commonStyles.infoLabel}>{props.name}</Text>
+      <Text style={commonStyles.infoText}>{props.institution}</Text>
     </Body>
   </ListItem>
 )

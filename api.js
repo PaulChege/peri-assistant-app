@@ -1,5 +1,5 @@
 
-const host = 'http://192.168.43.240:3000/'
+const host = 'http://192.168.0.37:3000/'
 
 
 export const logIn = async (email, password) => {
@@ -68,18 +68,16 @@ export const addStudent = async(token, name, institution, mobile_number) => {
   throw new Error(errMessage.message)
 }
 
-
-export const fetchStudent = async(token, studentId) =>{
-  const response = await fetch(host + 'students/' + studentId,
-  {
-    method: 'GET',
+export const removeStudent = async (token, studentId) => {
+  const response = await fetch(host +'students/' + studentId, {
+    method: 'DELETE',
     headers: {
       'Authorization': token
     }
   })
 
-  if(response.ok) {
-    const student = await response.json()
-    return student
+  if(response.ok){
+    const students = await response.json()
+    return students
   }
 }

@@ -3,7 +3,8 @@ import {StyleSheet} from 'react-native'
 export const colors = {
   primary:'#2980B9',
   textGrey: '#7B8D93',
-  white: '#FFFFFF'
+  textDarkGrey: '#303030',
+  white: '#FFFFFF',
 }
 
 export const commonStyles = StyleSheet.create({
@@ -16,10 +17,11 @@ export const commonStyles = StyleSheet.create({
   },
   title: {
     color: colors.textGrey,
-    textAlign: 'center',
+    textAlign: 'left',
     fontFamily: 'quicksand-regular',
     fontSize: 20,
-    paddingBottom: 20,
+    fontWeight: 'bold',
+    paddingLeft: 8
   },
   textInput: {
     fontFamily: 'quicksand-regular',
@@ -47,6 +49,25 @@ export const commonStyles = StyleSheet.create({
     paddingBottom: 8,
     width: '100%',
     textAlign: 'center',
+  },
+  buttonRemove: {
+    backgroundColor: colors.textGrey,
+    width: '40%',
+  },
+  infoText: {
+    color: colors.textGrey,
+    fontSize: 15,
+    fontFamily: 'quicksand-regular',
+    paddingLeft: 8,
+    width: '100%',
+    textAlign: 'left',
+  },
+  infoLabel: {
+    fontSize: 15,
+    fontFamily: 'quicksand-regular',
+    paddingLeft: 8,
+    width: '100%',
+    textAlign: 'left',
   },
   drawerIcon:{
     fontSize: 30, 

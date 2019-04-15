@@ -1,7 +1,9 @@
 import {combineReducers} from 'redux'
 
 import {LOG_IN_FULFILLED, LOG_IN_REJECTED, 
-  SIGN_UP_FULFILLED, SIGN_UP_REJECTED, LOG_OUT_REQUEST, ADD_STUDENT_REJECTED, ADD_STUDENT_FULFILLED, FETCH_STUDENTS_FULFILLED } from './actions'
+  SIGN_UP_FULFILLED, SIGN_UP_REJECTED, LOG_OUT_REQUEST, 
+  ADD_STUDENT_REJECTED, ADD_STUDENT_FULFILLED, FETCH_STUDENTS_FULFILLED,
+  REMOVE_STUDENT_FULFILLED } from './actions'
 
 const merge = (prev, next) => Object.assign({}, prev, next)
 
@@ -27,6 +29,8 @@ const studentReducer = (state ={}, action) => {
       return merge(state, {students: action.payload})
     case ADD_STUDENT_FULFILLED:
       return merge(state, {students: [...state.students, action.payload]})
+    case REMOVE_STUDENT_FULFILLED:
+      return merge(state, {students: action.payload})
     default:
       return state
   }

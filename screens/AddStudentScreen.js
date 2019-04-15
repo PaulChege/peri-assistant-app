@@ -9,7 +9,6 @@ class AddStudentScreen extends React.Component {
   static propTypes = {
     err: PropTypes.string,
     students: PropTypes.array,
-    token: PropTypes.string,
     addNewStudent: PropTypes.func
   }
 
@@ -21,7 +20,6 @@ class AddStudentScreen extends React.Component {
 
   handleSubmit = formState => {
     this.props.addNewStudent(
-      this.props.token,
       formState.name,
       formState.institution,
       formState.mobile_number
@@ -35,7 +33,6 @@ class AddStudentScreen extends React.Component {
 
 const mapStateToProps = state => ({
   err: state.error.addStudentError,
-  token: state.user.token,
   students: state.student.students
 })
 
