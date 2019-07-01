@@ -1,10 +1,10 @@
 import React from 'react'
-import {View, Text} from 'react-native'
-import {Thumbnail} from 'native-base'
+import {View, Text, StyleSheet} from 'react-native'
 import {commonStyles} from '../styles/base'
-import {List, ListItem, Button} from 'native-base'
+import {List, ListItem, Button, Icon} from 'native-base'
 import {connect} from 'react-redux'
 import {removeStudentRecord} from '../redux/actions'
+import {colors} from '../styles/base'
 
 class StudentDetailsScreen extends React.Component {
   
@@ -30,6 +30,10 @@ class StudentDetailsScreen extends React.Component {
     this.setState({student: this.props.navigation.getParam('student',{})})
   }
 
+  _navigateToStudentEditScreen = () => {
+    this.props.navigation.navigate('StudentEdit',{student: this.state.student})
+  }
+
   handleRemove = () => {
     this.props.removeStudentRecord(this.state.student.id)
   }
@@ -37,10 +41,18 @@ class StudentDetailsScreen extends React.Component {
   render() {
     return (
       <View>
-        <View style={{justifyContent: 'center', alignItems: 'center', paddingVertical: 15}} >
-          <Thumbnail square 
-            style={{width: 75, height: 75}}
-            source= {require('../assets/avatar.png')} />
+
+        <View style={styles.editButton}>
+          <Button iconLeft transparent 
+            onPress={this._navigateToStudentEditScreen}>
+            <Icon type="AntDesign" name="edit" 
+              style={{fontSize: 30, color: colors.primary}}/>
+          </Button>
+        </View>
+
+        <View style={styles.avatar} >
+          <Icon type="FontAwesome" name="user-circle" 
+            style={{fontSize: 80, color: colors.primary}}/>
         </View>
 
         <List style={{paddingRight: 8}}>
@@ -82,6 +94,20 @@ class StudentDetailsScreen extends React.Component {
     )
   } 
 }
+
+const styles = StyleSheet.create({
+  editButton: {
+    justifyContent: 'flex-end', 
+    flexDirection: 'row',
+    paddingVertical: 15,
+    paddingRight: 15
+  },
+  avatar: { 
+    justifyContent: 'center', 
+    alignItems: 'center', 
+    paddingVertical: 15
+  }
+})
 
 const mapStateToProps = (state) => ({
   students: state.student.students

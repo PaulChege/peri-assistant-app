@@ -1,10 +1,10 @@
 import React from 'react'
-import AddStudentForm  from '../forms/AddStudentForm'
+import StudentForm  from '../forms/StudentForm'
 import { connect } from 'react-redux';
 import { addNewStudent } from '../redux/actions'
 import PropTypes from 'prop-types'
 
-class AddStudentScreen extends React.Component {
+class StudentCreateScreen extends React.Component {
 
   static propTypes = {
     err: PropTypes.string,
@@ -27,7 +27,7 @@ class AddStudentScreen extends React.Component {
   }
 
   render (){
-    return <AddStudentForm onSubmit={this.handleSubmit} error={this.props.err}/>
+    return <StudentForm onSubmit={this.handleSubmit} error={this.props.err}/>
   }
 }
 
@@ -36,4 +36,4 @@ const mapStateToProps = state => ({
   students: state.student.students
 })
 
-export default connect(mapStateToProps, {addNewStudent} )(AddStudentScreen)
+export default connect(mapStateToProps, {addNewStudent} )(StudentCreateScreen)

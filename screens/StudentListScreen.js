@@ -29,8 +29,8 @@ class StudentListScreen extends React.Component {
     await this.props.fetchStudentsDetails()
   }
 
-  _navigateToAddStudentScreen = () => {
-    this.props.navigation.navigate('AddStudent') 
+  _navigateToStudentCreateScreen = () => {
+    this.props.navigation.navigate('StudentCreate') 
   }
 
   handleOnSelectStudent = student => {
@@ -52,11 +52,10 @@ class StudentListScreen extends React.Component {
             direction="up"
             style={styles.fab}
             position="bottomRight"
-            onPress={this._navigateToAddStudentScreen}>
+            onPress={this._navigateToStudentCreateScreen}>
             <Icon name="md-add" />
           </Fab>
         </View>
-        {/* <NavigationEvents onDidFocus={() => this._getStudents()} /> */}
       </Container>
     )
   }

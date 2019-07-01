@@ -14,8 +14,9 @@ import {PersistGate} from 'redux-persist/integration/react'
 import StudentListScreen from './screens/StudentListScreen'
 import SignUpScreen from './screens/SignUpScreen'
 import LoginScreen from './screens/LoginScreen'
-import AddStudentScreen from './screens/AddStudentScreen'
+import StudentCreateScreen from './screens/StudentCreateScreen'
 import StudentDetailsScreen from './screens/StudentDetailsScreen'
+import StudentEditScreen from './screens/StudentEditScreen'
 import {store, persistor} from './redux/store'
 import {Font} from 'expo'
 import {LOG_OUT_REQUEST } from './redux/actions'
@@ -25,14 +26,17 @@ const StudentStackNavigator = createStackNavigator({
   StudentList: { 
     screen: StudentListScreen,
   },
-  AddStudent: {
-    screen: AddStudentScreen,
+  StudentDetails: {
+    screen: StudentDetailsScreen
+  },
+  StudentCreate: {
+    screen: StudentCreateScreen,
     navigationOptions: {
       title: 'New Student',
     }
   },
-  StudentDetails: {
-    screen: StudentDetailsScreen
+  StudentEdit: {
+    screen: StudentEditScreen
   }
 },
 {
@@ -63,7 +67,7 @@ const MainDrawer = createDrawerNavigator({
             activeBackgroundColor='rgba(0, 0, 0, .15)'
             inactiveBackgroundColor='transparent'
           />
-          <Button transparent light onPress={() => {this._handleLogout(props)}} >
+          <Button light onPress={() => {this._handleLogout(props)}} >
             <Text style={styles.logoutButtonText}>
               Logout
             </Text>

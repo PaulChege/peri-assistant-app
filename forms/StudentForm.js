@@ -3,13 +3,18 @@ import {TextInput, KeyboardAvoidingView, StyleSheet, Text, View} from 'react-nat
 import {Button} from 'native-base' 
 import {commonStyles, colors} from '../styles/base'
 
-export default class AddStudentForm extends React.Component {
+export default class StudentForm extends React.Component {
   state = {
     name: '',
     institution: '',
     mobile_number: ''
   }
 
+  componentDidMount(){
+    if (this.props.editState){
+      this.setState(this.props.editState)
+    }
+  }
   getHandler = key => val => {
     this.setState({[key]: val})
   }
@@ -26,26 +31,34 @@ export default class AddStudentForm extends React.Component {
     return (
       <KeyboardAvoidingView behavior="padding" style={styles.container}>
         <Text style={commonStyles.error}>{this.props.error}</Text>
+        <Text style={commonStyles.inputLabel}>
+          Full Name
+        </Text>
         <TextInput
           value={this.state.name}
-          style={commonStyles.textInput}
-          placeholder = "Full Name"
+          style={commonStyles.textInputWithLabel}
           onChangeText ={this.handleNameChange}
           underlineColorAndroid = {colors.primary}
           autoCapitalize="none"
         />
+
+        <Text style={commonStyles.inputLabel}>
+          Institution
+        </Text>
         <TextInput 
           value={this.state.institution}
-          style={commonStyles.textInput}
-          placeholder="Institution"
+          style={commonStyles.textInputWithLabel}
           onChangeText={this.handleInstitutionChange}
           underlineColorAndroid = {colors.primary}
           autoCapitalize="none"
         />
+
+        <Text style={commonStyles.inputLabel}>
+          Mobile Number
+        </Text>
         <TextInput
           value={this.state.mobile_number}
-          style={commonStyles.textInput}
-          placeholder="Mobile number"
+          style={commonStyles.textInputWithLabel}
           keyboardType="numeric"
           onChangeText={this.handleMobileNumberChange}
           underlineColorAndroid = {colors.primary}
@@ -54,7 +67,7 @@ export default class AddStudentForm extends React.Component {
         <View style={commonStyles.buttonSection}>
           <Button style={commonStyles.button} onPress={this.handleSubmit} >
             <Text style={commonStyles.buttonText}>
-              Add Student
+              Save 
             </Text>
           </Button>
         </View>

@@ -29,6 +29,21 @@ export const commonStyles = StyleSheet.create({
     paddingTop: 10,
     paddingHorizontal: 10
   },
+  textInputWithLabel: {
+    fontFamily: 'quicksand-regular',
+    paddingBottom: 10,
+    paddingTop: 5,
+    paddingHorizontal: 10,
+    color: colors.textGrey
+  },
+  inputLabel: {
+    fontSize: 15,
+    fontFamily: 'quicksand-regular',
+    paddingLeft: 8,
+    width: '100%',
+    textAlign: 'left',
+    paddingTop: 5,
+  },
   error: {
     textAlign: 'center',
     color: 'red'
