@@ -20,6 +20,7 @@ class StudentEditScreen extends React.Component {
 
   handleSubmit = formState => {
     this.props.editStudentDetails(
+      formState.id,
       formState.name,
       formState.institution,
       formState.mobile_number
@@ -35,7 +36,7 @@ class StudentEditScreen extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  err: state.error.addStudentError,
+  err: state.error.editStudentError,
   students: state.student.students
 })
 

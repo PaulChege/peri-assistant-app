@@ -5,6 +5,7 @@ import {commonStyles, colors} from '../styles/base'
 
 export default class StudentForm extends React.Component {
   state = {
+    id: '',
     name: '',
     institution: '',
     mobile_number: ''

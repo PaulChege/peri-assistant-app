@@ -1,8 +1,10 @@
-import {logIn, signUp, addStudent, fetchStudents, removeStudent} from '../api'
+import {logIn, signUp, addStudent, editStudent, fetchStudents, removeStudent} from '../api'
 import {store} from './store'
 import {LOG_IN_FULFILLED, LOG_IN_REJECTED, 
   SIGN_UP_FULFILLED, SIGN_UP_REJECTED, 
-  ADD_STUDENT_REJECTED, ADD_STUDENT_FULFILLED, FETCH_STUDENTS_FULFILLED,
+  ADD_STUDENT_REJECTED, ADD_STUDENT_FULFILLED, 
+  EDIT_STUDENT_REJECTED, EDIT_STUDENT_FULFILLED, 
+  FETCH_STUDENTS_FULFILLED,
   REMOVE_STUDENT_FULFILLED } from './actionTypes'
 
 
@@ -45,6 +47,18 @@ export const addNewStudent = (name, institution, mobile_number) => async dispatc
   }
   catch (err){
     dispatch({type: ADD_STUDENT_REJECTED, payload: err.message})
+  }
+}
+
+export const editStudentDetails = (studentId, name, institution, mobile_number) => async dispatch => {
+  const token = store.getState().user.token
+  try{
+    const response = await editStudent(token, studentId, name, institution, mobile_number)
+    dispatch({type: EDIT_STUDENT_FULFILLED, payload: response})
+  }
+  catch (err){
+    // TODO - Fix validation errors not showing
+    dispatch({type: EDIT_STUDENT_REJECTED, payload: err.message})
   }
 }
 

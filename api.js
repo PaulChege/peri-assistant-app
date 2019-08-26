@@ -1,5 +1,5 @@
 
-const host = 'http://192.168.42.13:3000/'
+const host = 'http://192.168.42.127:3000/'
 
 export const logIn = async (email, password) => {
   const response = await fetch(host + 'auth/login', {
@@ -67,10 +67,11 @@ export const addStudent = async(token, name, institution, mobile_number) => {
   throw new Error(errMessage.message)
 }
 
-export const editStudent = async(token, studentId) => {
+export const editStudent = async(token, studentId, name, institution, mobile_number) => {
   const response = await fetch( host + 'students/' + studentId, {
       method: 'PUT',
       headers: {
+        'content-type': 'application/json',
         'Authorization': token
       },
       body: JSON.stringify({name, institution, mobile_number})
