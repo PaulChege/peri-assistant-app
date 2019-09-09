@@ -17,6 +17,7 @@ import LoginScreen from './screens/LoginScreen'
 import StudentCreateScreen from './screens/StudentCreateScreen'
 import StudentDetailsScreen from './screens/StudentDetailsScreen'
 import StudentEditScreen from './screens/StudentEditScreen'
+import LessonCreateScreen from './screens/LessonCreateScreen'
 import {store, persistor} from './redux/store'
 import {Font} from 'expo'
 import {LOG_OUT_REQUEST } from './redux/actions'
@@ -37,6 +38,12 @@ const StudentStackNavigator = createStackNavigator({
   },
   StudentEdit: {
     screen: StudentEditScreen
+  },
+  LessonCreate: {
+    screen: LessonCreateScreen,
+    navigationOptions:{
+      title: 'Add Lesson'
+    }
   }
 },
 {

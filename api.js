@@ -99,3 +99,23 @@ export const removeStudent = async (token, studentId) => {
     return students
   }
 }
+
+
+export const addLesson = async (token, studentId, time, duration) => {
+  const response = await fetch(host + 'students/' + studentId + '/lessons', {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+      'Authorization': token
+    },
+    body: JSON.stringify({time, duration})
+  })
+
+  if (response.ok) {
+    const lesson = await response.json()
+    return lesson
+  }
+
+  const errMessage = await response.json()
+  throw new Error(errMessage.message)
+}

@@ -1,1 +1,8 @@
+# toDo
+- Add Lesson Create Page
+- Add Lessons View Page for every student
+
+
+# forLater
+- Add push notifications for lesson reminders
 -'Loading' gif for all asynchronous actions

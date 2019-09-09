@@ -34,6 +34,10 @@ class StudentDetailsScreen extends React.Component {
     this.props.navigation.navigate('StudentEdit',{student: this.state.student})
   }
 
+  _navigateToLessonCreateScreen = () => {
+    this.props.navigation.navigate('LessonCreate', {student: this.state.student})
+  }
+
   handleRemove = () => {
     this.props.removeStudentRecord(this.state.student.id)
   }
@@ -83,10 +87,19 @@ class StudentDetailsScreen extends React.Component {
             </Text>
           </ListItem>
         </List>
+
+        <View style={commonStyles.buttonSection}>
+          <Button style={commonStyles.button} onPress={this._navigateToLessonCreateScreen}>
+            <Text style={commonStyles.buttonText}>
+              Add Lesson
+            </Text>
+          </Button>
+        </View>
+
         <View style={commonStyles.buttonSection}>
           <Button style={commonStyles.buttonRemove} onPress={this.handleRemove}>
             <Text style={commonStyles.buttonText}>
-              Remove 
+              Remove
             </Text>
           </Button>
         </View>

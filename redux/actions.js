@@ -1,11 +1,13 @@
-import {logIn, signUp, addStudent, editStudent, fetchStudents, removeStudent} from '../api'
+import {logIn, signUp, addStudent, editStudent, fetchStudents, removeStudent, addLesson} from '../api'
 import {store} from './store'
 import {LOG_IN_FULFILLED, LOG_IN_REJECTED, 
   SIGN_UP_FULFILLED, SIGN_UP_REJECTED, 
   ADD_STUDENT_REJECTED, ADD_STUDENT_FULFILLED, 
   EDIT_STUDENT_REJECTED, EDIT_STUDENT_FULFILLED, 
   FETCH_STUDENTS_FULFILLED,
-  REMOVE_STUDENT_FULFILLED } from './actionTypes'
+  REMOVE_STUDENT_FULFILLED, 
+  ADD_LESSON_FULFILLED,
+  ADD_LESSON_REJECTED} from './actionTypes'
 
 
 // async action creator
@@ -71,5 +73,16 @@ export const removeStudentRecord = (studentId) => async dispatch => {
   }
   catch(err){
 
+  }
+}
+
+export const addNewLesson = (studentId, time, duration) => async dispatch => {
+  const token = store.getState.user.token
+  try{
+    const response = await addStudent(token, studentId, time, duration)
+    dispatch({type: ADD_LESSON_FULFILLED, payload: response})
+  }
+  catch(err){
+    dispatch({type: ADD_LESSON_REJECTED, payload: err.message})
   }
 }

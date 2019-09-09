@@ -5,7 +5,9 @@ import {LOG_IN_FULFILLED, LOG_IN_REJECTED,
   ADD_STUDENT_REJECTED, ADD_STUDENT_FULFILLED, 
   EDIT_STUDENT_REJECTED, EDIT_STUDENT_FULFILLED, 
   FETCH_STUDENTS_FULFILLED,
-  REMOVE_STUDENT_FULFILLED } from './actionTypes'
+  REMOVE_STUDENT_FULFILLED, 
+  ADD_LESSON_FULFILLED,
+  ADD_LESSON_REJECTED} from './actionTypes'
 
 const merge = (prev, next) => Object.assign({}, prev, next)
 
@@ -35,6 +37,8 @@ const studentReducer = (state ={}, action) => {
       return merge(state, {students: action.payload })
     case REMOVE_STUDENT_FULFILLED:
       return merge(state, {students: action.payload})
+    case ADD_LESSON_FULFILLED:
+      return merge(state, {students: [...state.students, action.payload]})
     default:
       return state
   }
@@ -51,6 +55,8 @@ const errorReducer = (state = {}, action) => {
       return merge(state, {addStudentError: action.payload})
     case EDIT_STUDENT_REJECTED:
       return merge(state, {editStudentError: action.payload})
+    case ADD_LESSON_REJECTED:
+      return merge(state, {addLessonError: action.payload})
     default:
       return state
   }
